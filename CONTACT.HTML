@@ -1,0 +1,36 @@
+<div class="contact-form-wrapper">
+  {%- form 'contact', id: 'ContactForm' -%}
+    {%- if form.posted_successfully? -%}
+      <script>
+        window.location.href = "/thank-you"; // Change to your desired redirect URL
+      </script>
+    {%- endif -%}
+
+    {%- if form.errors -%}
+      <div class="form-error">
+        <p>Please correct the following errors:</p>
+        <ul>
+          {%- for field in form.errors -%}
+            <li>{{ form.errors.messages[field] }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    <div>
+      <input type="text" name="contact[name]" placeholder="Your Name" required>
+    </div>
+    <div>
+      <input type="email" name="contact[email]" placeholder="Your Email" required>
+    </div>
+    <div>
+      <input type="tel" name="contact[phone]" placeholder="Your Phone">
+    </div>
+    <div>
+      <textarea name="contact[body]" rows="6" placeholder="Your Message" required></textarea>
+    </div>
+    <div>
+      <button type="submit">Send Message</button>
+    </div>
+  {%- endform -%}
+</div>
